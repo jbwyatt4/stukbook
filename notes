@@ -1,0 +1,6 @@
+git notes
+git reset --hard head # forces all uncommited changes back to HEAD commit (your last commit)
+
+force a reset to github
+git reset --hard 0ea154e9e63007d47cea1f7b1becf7d48f2363ce
+git push -u origin master -f
