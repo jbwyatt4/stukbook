@@ -4,3 +4,13 @@ git reset --hard head # forces all uncommited changes back to HEAD commit (your 
 force a reset to github
 git reset --hard 0ea154e9e63007d47cea1f7b1becf7d48f2363ce
 git push -u origin master -f
+
+changed navbar default and forced it to stay ontop
+navbar-inverse
+navbar-fixed-top
+
+this causes navbar to be imposed over the main page, fix with css rule
+app/assets/stylesheets/pages.css.scss (what? use application.css.scss)
+body {
+  padding-top: 70px;
+}
