@@ -14,3 +14,22 @@ app/assets/stylesheets/pages.css.scss (what? use application.css.scss)
 body {
   padding-top: 70px;
 }
+
+flash
+stretches across screen, below css moves into a box that overlays itself (with z-index: 1) atop of everything and looks terrible.
+<% flash.each do |type, message| %>
+  <div class="alert alert-info fade-in">
+    <button class="close" data-dismiss="alert">x</button>
+    <%= message %>
+  </div>
+<% end %>
+
+.alert {
+  position: absolute;
+  z-index: 1;
+  width: 200px;
+}
+
+put css into application css instead of show css
+
+use a container tag everytime you want to shrink the borders
