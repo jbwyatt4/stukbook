@@ -33,3 +33,5 @@ stretches across screen, below css moves into a box that overlays itself (with z
 put css into application css instead of show css
 
 use a container tag everytime you want to shrink the borders
+
+Self-Referential Association
