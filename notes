@@ -35,3 +35,9 @@ put css into application css instead of show css
 use a container tag everytime you want to shrink the borders
 
 Self-Referential Association
+has_many :friendships, dependent: :destroy
+has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
+
+Clean database
+rake db:drop db:create db:migrate db:seed
+(this actually works)
