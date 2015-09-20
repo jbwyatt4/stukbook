@@ -50,3 +50,11 @@ end
 Clean database
 rake db:drop db:create db:migrate db:seed
 (this actually works)
+
+params
+at url users?people=friends
+
+handling little infs
+class: "btn btn-default #{'active' if params[:people] == 'friends'}"
+or
+class: "btn btn-default #{'active' unless params[:people]}"
