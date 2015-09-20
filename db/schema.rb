@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150918233213) do
 
-  create_table "frienships", force: :cascade do |t|
+  create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.string   "state",       default: "pending"

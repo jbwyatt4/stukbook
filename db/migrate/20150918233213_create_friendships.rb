@@ -1,6 +1,6 @@
-class CreateFrienships < ActiveRecord::Migration
+class CreateFriendships < ActiveRecord::Migration
   def change
-    create_table :frienships do |t|
+    create_table :friendships do |t|
       t.integer :user_id
       t.integer :friend_id
       t.string :state, default: "pending"

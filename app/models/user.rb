@@ -25,4 +25,25 @@ class User < ActiveRecord::Base
   def pending_friend_requests_from
     self.inverse_friendships.where(state: "pending")
   end
+
+  def friendship_status(user_2)
+    friendship = Friendship.where(user_id: [self.id,user_2.id], friend_id: [self.id,user_2.id]) # find where id is either self or argument and the same with friend_id
+    unless friendship.any?
+      return "not_friends"
+    else
+      if friendship.first.state == "active"
+        return "friends"
+      else
+        if friendship.first.user == self
+          return "pending"
+        else
+          return "requested"
+        end
+      end
+    end
+  end
+
+  def friendship_relation(user_2)
+    Friendship.where(user_id: [self.id,user_2.id], friend_id: [self.id,user_2.id]).first
+  end
 end
