@@ -68,3 +68,6 @@ PublicActivity::Activity.all
 
 --Show the last 16 friends
 @user.active_friends.last(16)
+
+auto_html
+rails g model post user_id:integer content:text content_html:text
