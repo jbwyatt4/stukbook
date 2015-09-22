@@ -58,3 +58,13 @@ handling little infs
 class: "btn btn-default #{'active' if params[:people] == 'friends'}"
 or
 class: "btn btn-default #{'active' unless params[:people]}"
+
+public_activity
+after installing gem
+rails g public_activity:migration
+add include PublicActivity::Model to model you want to track
+
+PublicActivity::Activity.all
+
+--Show the last 16 friends
+@user.active_friends.last(16)
