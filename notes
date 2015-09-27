@@ -71,3 +71,20 @@ PublicActivity::Activity.all
 
 auto_html
 rails g model post user_id:integer content:text content_html:text
+
+bootsnip
+www.bootsnipp.com/snippets/featured/timeline-responsive
+
+Very imporant, cycle between odd and even and use an index
+<% @activities.each_with_index do |activity| %>
+
+  <% if activity.trackable %>
+
+  <!---Cycle between odd and even!!! --->
+  <% if cycle('odd', 'even') == 'odd' %>
+    <li class="timeline-inverted">
+  <% else %>
+    <li>
+  <% end %>
+
+<% end %>

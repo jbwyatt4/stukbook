@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
   resources :posts, only: [:create, :update, :edit, :destroy]
+  resources :activities, only: [:index]
   get 'pages/home'
   root "pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
