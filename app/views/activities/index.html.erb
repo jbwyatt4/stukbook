@@ -10,6 +10,7 @@
   <ul class="timeline">
     <% @activities.each_with_index do |activity| %>
 
+      <% unless activity.trackable_type == "Friendships" && activity.owner == current_user %>
       <% if activity.trackable %>
         <!---Cycle between odd and even!!! --->
         <% if cycle('odd', 'even') == 'odd' %>
@@ -35,7 +36,8 @@
             <% end %>
           </div>
         </div>
-
+        
+      <% end %>
       <% end %>
     <% end %>
   </ul>

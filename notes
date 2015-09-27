@@ -88,3 +88,69 @@ Very imporant, cycle between odd and even and use an index
   <% end %>
 
 <% end %>
+
+Eliminate duplicate activity mentions
+just filter a specific type of activity, no tracking filtering, if you have two friends and they add each other, you will still get duplicates
+
+
+Unicorn
+devcenter.heroku.com/articles/rails-unicorn
+heroku looks for procfile, used for advanced applications
+
+--------------------------
+# config/unicorn.rb
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3) # checks if web_currency var is set, otherwise 3 worker processes at a time
+timeout 15 # 15 seconds
+preload_app true
+
+# terminate any current processes
+before_fork do |server, worker|
+  Signal.trap 'TERM' do
+    puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
+    Process.kill 'QUIT', Process.pid
+  end
+
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  Signal.trap 'TERM' do
+    puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
+  end
+
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection
+end
+----------------------
+
+# config/unicorn.rb
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+timeout 15
+preload_app true
+
+before_fork do |server, worker|
+  Signal.trap 'TERM' do
+    puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
+    Process.kill 'QUIT', Process.pid
+  end
+
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  Signal.trap 'TERM' do
+    puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
+  end
+
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection
+end
+
+procfile
+web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
+
+precompile
+type in terminal in your rails directory, doesn't work if you don't install postgres on local machine
+RAILS_ENV=production bundle exec rake assets:precompile
